@@ -1,0 +1,107 @@
+:root {
+    --body-bg: #1f2937;
+    --main-bg: #3f3f46;
+    --focus-bg: #0c4a6e;
+    --focus-text-color: #f1f5f9;
+    --focus-dropdown-bg: #075985;
+    --local-bg: #083344;
+    --local-text-color: #f4f4f5;
+}
+
+body {
+    background-color: var(--body-bg);
+    font-family: "Red Hat Mono", regular;
+}
+
+.main {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+    margin: 3.5em;
+    background-color: var(--main-bg);
+    border-radius: 10%;
+}
+
+.focus {
+    display: flex;
+    flex: 2;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: var(--focus-bg);
+    border-radius: 10% 0 0 10%;
+}
+
+.focus_links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: column;
+}
+
+.focus_routine,
+.focus_information,
+.focus_hobbies {
+    justify-content: center;
+    align-items: center;
+}
+
+.focus a {
+    color: var(--focus-text-color);
+}
+
+.dropdown_button {
+    all: unset;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+}
+
+.dropdown_content_item {
+    display: block;
+    padding: 1em;
+}
+
+.dropdown:hover .dropdown_content {
+    display: block;
+    background-color: var(--focus-dropdown-bg);
+}
+
+.focus_playlist {
+    align-items: center;
+    width: 100%;
+}
+
+
+.local {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    background-color: var(--local-bg);
+    border-radius: 0 10% 10% 0;
+}
+
+.local_timedate,
+.local_rimage,
+.local_temp {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: var(--local-text-color);
+}
+
+
+
+img {
+    width: 100%;
+}
+
+li {
+    list-style: none;
+    padding: 2rem 2rem;
+}
+
+a {
+    text-decoration: none;
+}

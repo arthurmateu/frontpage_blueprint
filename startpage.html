@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Start</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="focus">
+
+            <div class="focus_links">
+                <ul class="focus_routine">
+                    <li><a class="focus_routine_link" target="_blank" href="">routine_1</a></li>
+                    <li><a class="focus_routine_link" target="_blank" href="">routine_2</a></li>
+                    <li><a class="focus_routine_link" target="_blank" href="">routine_3</a></li>
+                </ul>
+                <ul class="focus_information">
+                    <li><a class="focus_information_link" target="_blank" href="">information_1</a></li>
+                    <li><a class="focus_information_link" target="_blank" href="">information_2</a></li>
+                    <li><a class="focus_information_link" target="_blank" href="">information_3</a></li>
+                </ul>
+                <ul class="focus_hobbies">
+                    <li>
+                        <a class="focus_hobbies_link" target="_blank" href="">hobby_1</a> |
+                        <a class="focus_hobbies_link" target="_blank" href="">hobby_1.5</a>
+                    </li>
+                    <li><a class="focus_hobbies_link" target="_blank" href="">hobby_2</a></li>
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropdown_button">
+                                <a class="focus_hobbies_link" target="_blank" href="">hobby_dropdown</a>
+                            </button>
+                            <div class="dropdown_content">
+                                <a href="" class="dropdown_content_item">thing 1</a>
+                                <a href="" class="dropdown_content_item">thing 2</a>
+                                <a href="" class="dropdown_content_item">thing 3</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="focus_playlist">
+                <!-- Random spotify playlist -->
+                <iframe style="border-radius:12px"
+                    src="https://open.spotify.com/embed/album/4SZko61aMnmgvNhfhgTuD3?utm_source=generator" width="100%"
+                    height="76" frameBorder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="local">
+            <div class="local_timedate">
+                <h1 id="local_timedate_clock"></h1>
+                <script>
+                    function updateTime() {
+                        document.getElementById('local_timedate_clock').textContent = new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit", hour12: false});
+                    }
+                    setInterval(updateTime, 30000);
+                    updateTime(); 
+                </script>
+            </div>
+
+            <div class="local_rimage">
+                <!-- TODO: seems like there's server-side logic that needs to occur/node.js things that I don't really want to bother with-->
+                <img src="images/image.png">
+            </div>
+
+            <div class="local_temp">
+                <h1 id="local_temp_current"></h1>
+                <script>
+                    const api = 'https://api.open-meteo.com/v1/forecast?latitude=48.028&longitude=12.558&current=temperature_2m&timezone=Europe%2FBerlin&forecast_days=1'; // Change this to your city. Open-meteo is pretty self-explanatory.
+
+                    async function fetchTemperature() {
+                        try {
+                            const response = await fetch(api);
+                            const data = await response.json();
+                            document.getElementById('local_temp_current').textContent =
+                                (data.current.temperature_2m)
+                                    ? data.current.temperature_2m + '°C'
+                                    : '<Unavailable>';
+                        } catch (error) {
+                            console.error('Error fetching temperature data:', error);
+                            document.getElementById('local_temp_current').textContent = 'Error fetching data';
+                        }
+                    }
+
+                    fetchTemperature();
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
